@@ -1,0 +1,53 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: undangan_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: undangan
+      POSTGRES_PASSWORD: undangan_dev
+      POSTGRES_DB: undangan
+    ports:
+      - "5432:5432"
+    volumes:
+      - undangan_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U undangan -d undangan"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  minio:
+    image: minio/minio:latest
+    container_name: undangan_minio
+    restart: unless-stopped
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin123
+    command: server /data --console-address ":9001"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - undangan_minio_data:/data
+
+  minio_init:
+    image: minio/mc:latest
+    container_name: undangan_minio_init
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      until (mc alias set local http://minio:9000 $$MINIO_ROOT_USER $$MINIO_ROOT_PASSWORD) do echo 'waiting for minio'; sleep 2; done;
+      mc mb --ignore-existing local/undangan-assets;
+      mc anonymous set download local/undangan-assets;
+      echo 'minio bucket ready';
+      "
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin123
+    restart: "no"
+
+volumes:
+  undangan_pgdata:
+  undangan_minio_data:

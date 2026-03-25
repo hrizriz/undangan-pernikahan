@@ -1,0 +1,580 @@
+/* Kelola undangan — layar penuh (drag & drop kanvas) */
+.page.studio-full {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  min-height: 100dvh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+.studio {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 2.5rem;
+}
+
+/* Timpa .studio agar lebar penuh saat mode kelola layar penuh */
+.studio.studio-full {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.page.studio-full .studio-head,
+.page.studio-full .studio-tabs {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.page.studio-full .studio-panel.studio-tab-card {
+  padding: 1rem 1.25rem 2rem;
+}
+
+.page.studio-full .studio-head {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  margin-bottom: 0;
+  flex-shrink: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.page.studio-full .studio-tabs {
+  padding-top: 0.5rem;
+  padding-bottom: 0.75rem;
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+
+.page.studio-full .error {
+  margin: 0 1.25rem 0.5rem;
+}
+
+.studio-slide-workspace {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 0.75rem 1.25rem 1rem;
+  border: none;
+  background: transparent;
+  border-radius: 0;
+  max-width: none;
+  width: 100%;
+}
+
+.studio-panel.studio-tab-card.card {
+  max-width: 40rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.studio-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.studio-head h1 {
+  margin: 0.35rem 0 0;
+  font-size: 1.5rem;
+}
+
+.studio-back {
+  display: inline-block;
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+  opacity: 0.85;
+}
+
+.studio-head-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.studio-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.studio-tabs button {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: inherit;
+  padding: 0.45rem 0.75rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.studio-tabs button.active {
+  border-color: var(--accent, #c76b8f);
+  background: rgba(199, 107, 143, 0.15);
+}
+
+.studio-panel {
+  padding: 1.25rem;
+}
+
+.studio-panel .form label.row-check {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.studio-panel .form label.row-check input {
+  width: auto;
+}
+
+.studio-flow-card {
+  padding-bottom: 1.5rem;
+}
+
+.studio-flow-hint {
+  margin-bottom: 0.85rem;
+  line-height: 1.45;
+}
+
+.studio-flow-shell {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  align-items: stretch;
+  flex: 1;
+  min-height: 0;
+}
+
+@media (min-width: 900px) {
+  .studio-flow-shell {
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 400px);
+    gap: 1rem;
+  }
+}
+
+.studio-flow-main {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.studio-canvas-area {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: min(52vh, 640px);
+}
+
+.studio-flow-strip {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.45rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  overflow-x: auto;
+  overflow-y: hidden;
+  flex-shrink: 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.studio-flow-strip button {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.35);
+  color: inherit;
+  font: inherit;
+  font-size: 0.78rem;
+  padding: 0.4rem 0.65rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  white-space: nowrap;
+  flex: 0 0 auto;
+  text-align: left;
+}
+
+.studio-flow-strip button:hover {
+  border-color: rgba(199, 107, 143, 0.45);
+}
+
+.studio-flow-strip button.is-active {
+  border-color: rgba(199, 107, 143, 0.75);
+  background: rgba(199, 107, 143, 0.12);
+}
+
+.studio-flow-empty {
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  text-align: center;
+  border-radius: 0.65rem;
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.studio-flow-inspector {
+  padding: 1rem !important;
+  margin: 0 !important;
+  max-height: min(85vh, 900px);
+  overflow-y: auto;
+}
+
+.studio-flow-inspector-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.85rem;
+}
+
+.studio-flow-inspector-head select {
+  flex: 1;
+  min-width: 8rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 0.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.25);
+  color: inherit;
+}
+
+.studio-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.studio-unsaved-badge {
+  font-size: 0.78rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: 0.35rem;
+  background: rgba(234, 179, 8, 0.2);
+  border: 1px solid rgba(234, 179, 8, 0.45);
+  color: #fde68a;
+}
+
+.studio-slide-save-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Modal pilih template */
+.template-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 1.25rem;
+  overflow-y: auto;
+}
+
+.template-modal {
+  width: 100%;
+  max-width: 52rem;
+  margin: 2rem auto;
+  padding: 1.25rem 1.35rem 1.5rem;
+  max-height: calc(100dvh - 4rem);
+  overflow-y: auto;
+}
+
+.template-modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.template-modal-head .h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.template-modal-lead {
+  margin: 0 0 1rem;
+  line-height: 1.45;
+}
+
+.template-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  gap: 0.65rem;
+}
+
+.template-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 0.85rem;
+  border-radius: 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.25);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.template-card__icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 0.25rem;
+  padding: 0.35rem 0;
+}
+
+.template-card:hover {
+  border-color: rgba(199, 107, 143, 0.55);
+  background: rgba(199, 107, 143, 0.08);
+}
+
+.template-card__swatch {
+  width: 100%;
+  height: 0.35rem;
+  border-radius: 0.2rem;
+  margin-bottom: 0.15rem;
+}
+
+.template-card__name {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.template-card__desc {
+  font-size: 0.78rem;
+  opacity: 0.85;
+  line-height: 1.35;
+}
+
+.slide-block {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.slide-block:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.slide-block-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.slide-index {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  min-width: 1.75rem;
+}
+
+.slide-drag-handle {
+  cursor: grab;
+  user-select: none;
+  padding: 0.35rem 0.45rem;
+  border-radius: 0.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.2);
+  font-size: 0.95rem;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.slide-drag-handle:active {
+  cursor: grabbing;
+}
+
+.slide-block--dragging {
+  opacity: 0.72;
+}
+
+.slide-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.slide-fields label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.88rem;
+}
+
+.slide-fields input,
+.slide-fields textarea,
+.slide-fields select {
+  padding: 0.45rem 0.55rem;
+  border-radius: 0.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.25);
+  color: inherit;
+  font: inherit;
+}
+
+.slide-fields textarea {
+  resize: vertical;
+  min-height: 4rem;
+}
+
+.slide-fields .row-check {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.slide-fields .row-check input {
+  width: auto;
+}
+
+.gallery-url-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.gallery-url-list li {
+  display: flex;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+.gallery-url-list li input {
+  flex: 1;
+}
+
+.slide-block-head select {
+  flex: 1;
+  min-width: 10rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 0.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.25);
+  color: inherit;
+}
+
+.guest-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.25rem 0 0;
+}
+
+.guest-list li {
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.token-wrap code {
+  word-break: break-all;
+}
+
+.rsvp-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.rsvp-list li {
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.rsvp-list time {
+  display: block;
+  font-size: 0.8rem;
+  opacity: 0.7;
+  margin-bottom: 0.25rem;
+}
+
+.rsvp-line {
+  margin: 0.35rem 0 0;
+  font-size: 0.9rem;
+}
+
+.rsvp-data {
+  margin: 0.5rem 0 0;
+  font-size: 0.75rem;
+  overflow: auto;
+  max-height: 8rem;
+  padding: 0.5rem;
+  border-radius: 0.35rem;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Blok sisip foto HD di editor slide */
+.hd-photo-field {
+  margin: 0.35rem 0 0.5rem;
+  padding: 0.65rem 0.75rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(199, 107, 143, 0.28);
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.hd-photo-field legend {
+  padding: 0 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #f0d4df;
+}
+
+.hd-photo-field__hint {
+  margin: 0 0 0.5rem;
+  line-height: 1.45;
+}
+
+.hd-photo-field label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.hd-photo-field input {
+  width: 100%;
+}
+
+.hd-photo-field--gallery {
+  margin-bottom: 0.35rem;
+  padding-bottom: 0.5rem;
+}

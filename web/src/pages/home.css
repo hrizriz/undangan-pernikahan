@@ -1,0 +1,271 @@
+/* Landing — nuansa marketing undangan digital (struktur mirip situs studio, konten & aset sendiri). */
+
+.landing {
+  min-height: 100dvh;
+  color: #f8f0f3;
+  background:
+    radial-gradient(ellipse 90% 55% at 50% -15%, rgba(199, 107, 143, 0.22) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 40% at 100% 40%, rgba(139, 74, 106, 0.12) 0%, transparent 50%),
+    linear-gradient(180deg, #120a0e 0%, #0f0a0c 35%, #0c080a 100%);
+}
+
+.landing a {
+  color: #f0c4d4;
+}
+
+.landing a:hover {
+  color: #fff;
+}
+
+.landing-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.landing-logo {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #fff;
+}
+
+.landing-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.landing-nav-links a:not(.btn) {
+  font-size: 0.92rem;
+  text-decoration: none;
+  opacity: 0.92;
+}
+
+.landing-nav-links a:not(.btn):hover {
+  text-decoration: underline;
+}
+
+.landing-nav-links .btn.small {
+  width: auto;
+  padding: 0.45rem 1rem;
+}
+
+.landing-main {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0 1.25rem 3rem;
+}
+
+.landing-hero {
+  text-align: center;
+  padding: 2.5rem 0 2.75rem;
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.landing-eyebrow {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: rgba(240, 196, 212, 0.85);
+  margin: 0 0 1rem;
+}
+
+.landing-hero h1 {
+  margin: 0 0 1rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.85rem, 5vw, 2.45rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+
+.landing-lead {
+  margin: 0 0 1.75rem;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  opacity: 0.88;
+}
+
+.landing-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.landing-cta-row .btn {
+  min-width: 10rem;
+}
+
+.landing-cta-row .btn:not(.primary) {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.landing-cta-row .btn.primary {
+  width: auto;
+}
+
+.landing-section {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.landing-section h2 {
+  margin: 0 0 0.35rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.45rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.landing-section .landing-sub {
+  margin: 0 auto 1.5rem;
+  max-width: 32rem;
+  text-align: center;
+  font-size: 0.95rem;
+  opacity: 0.78;
+  line-height: 1.5;
+}
+
+.landing-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1rem;
+}
+
+.landing-feature {
+  padding: 1.15rem 1.1rem;
+  border-radius: 0.85rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.landing-feature:hover {
+  border-color: rgba(199, 107, 143, 0.28);
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.landing-feature h3 {
+  margin: 0 0 0.45rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.landing-feature p {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  opacity: 0.82;
+}
+
+.landing-steps {
+  counter-reset: step;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.85rem;
+  max-width: 36rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.landing-steps li {
+  position: relative;
+  padding: 1rem 1rem 1rem 3.25rem;
+  border-radius: 0.65rem;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.landing-steps li::before {
+  counter-increment: step;
+  content: counter(step);
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.65rem;
+  height: 1.65rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c76b8f, #8b4a6a);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.landing-steps strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.95rem;
+}
+
+.landing-faq {
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.landing-faq details {
+  margin-bottom: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0.65rem 0.85rem;
+}
+
+.landing-faq summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.92rem;
+  list-style: none;
+}
+
+.landing-faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.landing-faq details[open] summary {
+  margin-bottom: 0.5rem;
+}
+
+.landing-faq p {
+  margin: 0;
+  font-size: 0.88rem;
+  opacity: 0.85;
+  line-height: 1.55;
+}
+
+.landing-footer {
+  margin-top: 2.5rem;
+  padding: 1.5rem 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  text-align: center;
+  font-size: 0.82rem;
+  opacity: 0.65;
+}
+
+.landing-code-hint {
+  margin: 1.25rem 0 0;
+  font-size: 0.8rem;
+  opacity: 0.55;
+}
+
+.landing-code-hint code {
+  font-size: 0.78em;
+}

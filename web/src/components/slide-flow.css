@@ -1,0 +1,162 @@
+/* Kanvas alur (gaya NiFi) — override ringan di atas @xyflow/react */
+
+.slide-flow-wrap {
+  position: relative;
+  width: 100%;
+  min-height: 0;
+  flex: 1;
+  border-radius: 0.65rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #0f1419;
+}
+
+/* Latar kanvas mengikuti tema halaman tamu — grid (dots/lines/cross) diatur di SlideFlowCanvas. */
+.slide-flow-wrap .react-flow {
+  background: transparent !important;
+}
+
+.slide-flow-wrap--theme-simple {
+  background: linear-gradient(165deg, #1e293b 0%, #0f172a 48%, #0f1419 100%);
+}
+
+.slide-flow-wrap--theme-vintage {
+  background: linear-gradient(180deg, #292524 0%, #1c1917 50%, #17120e 100%);
+  box-shadow: inset 0 0 80px rgba(161, 98, 7, 0.06);
+  border-color: rgba(161, 98, 7, 0.2);
+}
+
+.slide-flow-wrap--theme-floral {
+  background-color: #0f1419;
+  background-image:
+    radial-gradient(circle at 18% 22%, rgba(236, 72, 153, 0.11) 0%, transparent 42%),
+    radial-gradient(circle at 82% 75%, rgba(244, 114, 182, 0.09) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(190, 24, 93, 0.05) 0%, transparent 55%),
+    linear-gradient(165deg, #1a0f18 0%, #0f1419 55%, #0d1218 100%);
+  border-color: rgba(236, 72, 153, 0.18);
+}
+
+.slide-flow-wrap--theme-minimal {
+  background: linear-gradient(180deg, #171717 0%, #0a0a0a 50%, #0f1419 100%);
+}
+
+.slide-flow-wrap--theme-ocean {
+  background: linear-gradient(165deg, #0c1929 0%, #0f172a 45%, #0a1628 100%);
+  border-color: rgba(56, 189, 248, 0.15);
+}
+
+.slide-flow-wrap--theme-forest {
+  background: linear-gradient(165deg, #0f1f14 0%, #14532d22 40%, #0f1419 100%);
+  border-color: rgba(74, 222, 128, 0.12);
+}
+
+.slide-flow-wrap--theme-romantic {
+  background: linear-gradient(165deg, #1f0a14 0%, #2d1520 48%, #0f1419 100%);
+  border-color: rgba(251, 113, 133, 0.14);
+}
+
+.slide-flow-wrap--theme-classic_gold {
+  background: linear-gradient(165deg, #0c0a09 0%, #1c1917 45%, #0f1419 100%);
+  border-color: rgba(212, 175, 55, 0.18);
+}
+
+.slide-flow-wrap--theme-pastel {
+  background: linear-gradient(165deg, #1e1b2e 0%, #2d2642 40%, #0f1419 100%);
+  border-color: rgba(167, 139, 250, 0.14);
+}
+
+.slide-flow-wrap--theme-rustic {
+  background: linear-gradient(165deg, #1c1410 0%, #292018 45%, #0f1419 100%);
+  border-color: rgba(234, 88, 12, 0.14);
+}
+
+.studio-canvas-area .slide-flow-wrap {
+  min-height: min(52vh, 640px);
+  height: 100%;
+  flex: 1 1 auto;
+}
+
+/* Isi penuh: ukuran terukur untuk React Flow (width/height ≠ 0) */
+.slide-flow-wrap .slide-flow-rf {
+  position: absolute !important;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 400px;
+}
+
+.slide-flow-wrap .react-flow__minimap {
+  background: #1a222c !important;
+  border-radius: 0.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.slide-flow-wrap .react-flow__controls {
+  border-radius: 0.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+
+.slide-flow-wrap .react-flow__controls-button {
+  background: #1a222c;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  fill: #e2e8f0;
+}
+
+.slide-flow-wrap .react-flow__controls-button:hover {
+  background: #243041;
+}
+
+.slide-flow-handle {
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 2px !important;
+  background: #94a3b8 !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+}
+
+.slide-flow-node {
+  min-width: 200px;
+  max-width: 240px;
+  padding: 0.65rem 0.75rem 0.75rem;
+  border-radius: 0.4rem;
+  background: linear-gradient(180deg, #1e293b 0%, #172033 100%);
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+  font-size: 0.82rem;
+  color: #e2e8f0;
+  cursor: grab;
+}
+
+.slide-flow-node:active {
+  cursor: grabbing;
+}
+
+.slide-flow-node--selected {
+  border-color: rgba(199, 107, 143, 0.85);
+  box-shadow:
+    0 0 0 1px rgba(199, 107, 143, 0.35),
+    0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+.slide-flow-node__step {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.55;
+  margin-bottom: 0.25rem;
+}
+
+.slide-flow-node__type {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #94a3b8;
+  margin-bottom: 0.35rem;
+}
+
+.slide-flow-node__title {
+  font-weight: 600;
+  line-height: 1.35;
+  word-break: break-word;
+  color: #f1f5f9;
+}

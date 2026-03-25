@@ -1,0 +1,77 @@
+# Environment / secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials*.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Go
+bin/
+dist/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+coverage/
+
+# Go workspace
+go.work
+go.work.sum
+
+# Node / Vite (web/)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+
+web/dist/
+web/.vite/
+web/.turbo/
+
+# Local DB / docker volumes (if any get created as folders)
+data/
+tmp/
+
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+/bin/
+/dist/
+
+# Test
+*.test
+*.out
+coverage.*
+
+# Go
+vendor/
+
+# Frontend
+web/node_modules/
+web/dist/
+
+# Env
+.env
+.env.local
+*.pem
+
+# IDE
+.idea/
+.vscode/
+*.swp
