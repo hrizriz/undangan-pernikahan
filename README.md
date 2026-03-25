@@ -226,7 +226,3 @@ Di **Invitation Studio → Tab “Tampilan & musik”**:
 
 ---
 
-## Lisensi
-
-Belum ditentukan (default: semua hak cipta dilindungi pemilik repo).
-
